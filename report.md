@@ -1,2 +1,2 @@
-problem a:- npm publish requires two-factor authentication or granular access token =>
-solution a:- Provide an npm one-time password OTP code or configure a granular npm access token with publish rights and two-factor bypass enabled so the package can be published to the public registry.
+problem a:- The npm organization scope inqlab does not exist on npmjs.com =>
+solution a:- Create the inqlab public organization on npmjs.com under your sayempro account to claim the scope before publishing.

@@ -18,5 +18,6 @@
   - [x] Pass strict TypeScript compiler verification with zero errors
 - [/] Publishing and Version Control
   - [x] Authenticate npm account in local environment
-  - [ ] Complete npm publication with two-factor authentication code or automation token
   - [x] Push latest monorepo commits to remote repository
+  - [ ] Create inqlab public organization on npmjs.com
+  - [ ] Complete npm publication with two-factor authentication code
