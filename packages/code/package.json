@@ -1,6 +1,6 @@
 {
   "name": "@inqlab/code",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CartoCode Architecture Graph Engine & Model Context Protocol (MCP) CLI",
   "homepage": "https://cartocode.inqlab.dev",
   "repository": {
@@ -14,7 +14,8 @@
   "type": "module",
   "main": "./dist/index.js",
   "bin": {
-    "code": "dist/index.js"
+    "inqlab-code": "dist/index.js",
+    "cartocode": "dist/index.js"
   },
   "files": [
     "dist"

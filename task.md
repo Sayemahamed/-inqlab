@@ -7,7 +7,7 @@
   - [x] Create monorepo root package manifest with workspace definitions
   - [x] Configure root TypeScript compiler options
 - [x] Code Package Configuration
-  - [x] Set canonical binary entrypoint for direct package execution
+  - [x] Configure explicit inqlab-code and cartocode binary targets to prevent system code executable collisions
   - [x] Configure subpackage TypeScript settings
   - [x] Install workspace dependencies via Bun
   - [x] Build standalone executable distribution file
@@ -27,3 +27,5 @@
   - [x] Add formal open-source license file with author profile links
   - [x] Bump package patch release version
   - [x] Rebuild distribution and republish updated package release to registry
+- [x] Executable Collision Resolution and v1.0.2 Release
+  - [x] Publish patch version 1.0.2 to registry with scoped inqlab-code and cartocode binary names
