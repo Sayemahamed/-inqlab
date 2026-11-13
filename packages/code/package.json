@@ -1,0 +1,45 @@
+{
+  "name": "@inqlab/code",
+  "version": "1.0.0",
+  "description": "CartoCode Architecture Graph Engine & Model Context Protocol (MCP) CLI",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "code": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "bun build ./index.ts --target=node --outfile=dist/index.js && chmod +x dist/index.js",
+    "prepublishOnly": "bun run build",
+    "test": "bun run ./index.ts --help"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.3.1",
+    "consola": "^3.4.0",
+    "zod": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  },
+  "keywords": [
+    "cartocode",
+    "inqlab",
+    "mcp",
+    "model-context-protocol",
+    "architecture-graph",
+    "ai-agent",
+    "cursor",
+    "claude"
+  ],
+  "author": "Inqlab",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}
