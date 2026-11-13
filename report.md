@@ -1,2 +1,2 @@
-problem a:- The npm organization scope inqlab does not exist on npmjs.com =>
-solution a:- Create the inqlab public organization on npmjs.com under your sayempro account to claim the scope before publishing.
+problem a:- The npm organization name inqlab is registered by an inactive account without public packages =>
+solution a:- Either choose an available scope variant such as inqlabdev, inqlab-dev, or product scope cartocode, or file an npm dispute request with npm support to claim the dormant inqlab namespace.

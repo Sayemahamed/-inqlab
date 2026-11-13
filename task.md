@@ -19,5 +19,5 @@
 - [/] Publishing and Version Control
   - [x] Authenticate npm account in local environment
   - [x] Push latest monorepo commits to remote repository
-  - [ ] Create inqlab public organization on npmjs.com
+  - [ ] Resolve npm organization scope name collision
   - [ ] Complete npm publication with two-factor authentication code
