@@ -19,4 +19,4 @@
 - [/] Publishing and Version Control
   - [x] Authenticate npm account in local environment
   - [ ] Complete npm publication with two-factor authentication code or automation token
-  - [ ] Push latest monorepo commits to remote repository
+  - [x] Push latest monorepo commits to remote repository
