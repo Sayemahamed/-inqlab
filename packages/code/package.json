@@ -1,7 +1,16 @@
 {
   "name": "@inqlab/code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CartoCode Architecture Graph Engine & Model Context Protocol (MCP) CLI",
+  "homepage": "https://cartocode.inqlab.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sayemahamed/-inqlab.git",
+    "directory": "packages/code"
+  },
+  "bugs": {
+    "url": "https://github.com/Sayemahamed/-inqlab/issues"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "bin": {
@@ -37,7 +46,10 @@
     "cursor",
     "claude"
   ],
-  "author": "Inqlab",
+  "author": {
+    "name": "Sayem Ahamed",
+    "url": "https://github.com/Sayemahamed"
+  },
   "license": "MIT",
   "publishConfig": {
     "access": "public"
