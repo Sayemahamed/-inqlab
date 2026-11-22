@@ -1,8 +1,8 @@
-problem a:- Monolithic adapter commands in code package wrap legacy string dispatch functions rather than native citty command definitions => ok
-solution a:- Decomposed workspace, project, branch, test, and login into modular citty command files with typed arguments, value hints, and direct api invocations, purging the legacy dispatch wrappers.
+problem a:- The code package version in the local manifest matches the currently published registry version and will be rejected on publish => ok
+solution a:- Increment the patch version of the code package to 1.0.3 and rebuild distribution artifacts before publishing.
 
-problem b:- Argument definitions in both CLI packages underutilize citty schema features such as value hints and enums => ok
-solution b:- Enhanced argument definitions with value hints, type enforcement, allowed options for model selectors, and clear argument descriptions across all commands in both packages.
+problem b:- The new intelli package requires initial public release to the npm registry => ok
+solution b:- Verify the intelli bundle build, check publish configuration, and publish the package with public access.
 
-problem c:- Subcommand organization should follow clean modular directory patterns across both packages => ok
-solution c:- Standardized command directories in packages/code and packages/intelli so every command is an independent export consumed directly by the main entrypoint.
+problem c:- Workspace contains uncommitted modular citty architecture refactoring and newly added files => ok
+solution c:- Stage all modified and untracked files, record a commit for the modular refactor and version bump, and push to the remote repository.

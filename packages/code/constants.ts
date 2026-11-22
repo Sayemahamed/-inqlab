@@ -20,7 +20,7 @@ export const CONFIG_FILE = path.join(CONFIG_DIR, "code.json");
 /**
  * Package release version for @inqlab/code.
  */
-export const CLI_VERSION = "1.0.2";
+export const CLI_VERSION = "1.0.3";
 
 /**
  * Model Context Protocol server metadata.
