@@ -14,11 +14,13 @@ export const apiKeyCommand = defineCommand({
   args: {
     projectId: {
       type: "positional",
+      valueHint: "id",
       description: "Target project ID",
       required: false,
     },
     name: {
       type: "string",
+      valueHint: "name",
       description: "Key name or label",
       required: false,
     },

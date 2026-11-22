@@ -1,24 +1,17 @@
-# Monorepo CLI Expansion and Citty Integration Plan
+# Idiomatic Citty Architecture and CLI Modernization Plan
 
-- [x] Architecture and Package Setup
-  - [x] Create packages/intelli subpackage directory within monorepo workspaces
-  - [x] Add intelli package manifest configured with inqlab scope, public access, and executable binaries
-  - [x] Configure TypeScript settings extending root compiler configuration
-  - [x] Add citty dependency to root workspaces and subpackage manifests
-  - [x] Remove temporary root cli folder after migration
-- [x] Unified Configuration Storage
-  - [x] Configure dot inqlab directory in user home as canonical configuration root
-  - [x] Point packages/code configuration storage to code.json inside dot inqlab
-  - [x] Point packages/intelli configuration storage to intelli.json inside dot inqlab
-- [x] Citty Command Structure Refactoring
-  - [x] Convert packages/intelli commands into citty definitions
-  - [x] Convert packages/code commands into citty definitions
-- [x] Browser-Based Login and Consola Interaction for Intelli
-  - [x] Implement browser-based login flow with local callback server and HTML completion view
-  - [x] Support direct token or key argument bypass for headless environments
-  - [x] Adopt consola for all prompts, selections, status boxes, and error reporting
-  - [x] Align project creation, list, and key generation interaction styling with the code CLI
-- [x] Verification and Build
+- [x] Command Architecture Decomposition for Code Package
+  - [x] Create modular workspace citty command definition with list and create subcommands
+  - [x] Create modular project citty command definition with list, create, and path subcommands
+  - [x] Create modular branch citty command definition with list, create, and switch subcommands
+  - [x] Create modular test and login citty command definitions
+  - [x] Remove legacy monolithic dispatch wrappers from commands module
+  - [x] Refactor main entrypoint in code package to compose modular citty definitions
+- [x] Schema and Argument Enhancement for Intelli Package
+  - [x] Add value hints and enum option validation to project creation command
+  - [x] Add typed value hints to login, api-key, and configuration arguments
+  - [x] Refactor command entrypoint to use citty subcommand registration
+- [x] Verification and Quality Assurance
   - [x] Rebuild both packages using Bun
-  - [x] Verify TypeScript types with zero errors
-  - [x] Test browser login initialization and consola interactive output
+  - [x] Verify zero TypeScript errors under strict type checking
+  - [x] Validate generated citty usage output and argument hints for both CLIs

@@ -1,5 +1,8 @@
-problem a:- Intelli CLI login currently uses terminal prompt instead of browser-based authentication loop like the code CLI => ok
-solution a:- Implemented browser-based authentication flow with local loopback callback server on port 9877, HTML success landing page, and token storage in dot inqlab intelli.json matching the code CLI pattern.
+problem a:- Monolithic adapter commands in code package wrap legacy string dispatch functions rather than native citty command definitions => ok
+solution a:- Decomposed workspace, project, branch, test, and login into modular citty command files with typed arguments, value hints, and direct api invocations, purging the legacy dispatch wrappers.
 
-problem b:- Interactive prompts and output in Intelli CLI use raw console calls instead of consola design system => ok
-solution b:- Replaced raw console and readline prompts with consola interactive prompts, structured status boxes, and error reporting across all intelli commands.
+problem b:- Argument definitions in both CLI packages underutilize citty schema features such as value hints and enums => ok
+solution b:- Enhanced argument definitions with value hints, type enforcement, allowed options for model selectors, and clear argument descriptions across all commands in both packages.
+
+problem c:- Subcommand organization should follow clean modular directory patterns across both packages => ok
+solution c:- Standardized command directories in packages/code and packages/intelli so every command is an independent export consumed directly by the main entrypoint.

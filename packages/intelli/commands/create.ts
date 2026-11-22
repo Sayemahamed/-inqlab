@@ -18,26 +18,41 @@ export const createCommand = defineCommand({
   args: {
     name: {
       type: "string",
+      valueHint: "name",
       description: "Project name",
       required: false,
     },
     language: {
       type: "string",
+      valueHint: "id",
       description: "Primary language ID",
       required: false,
     },
     instructor: {
       type: "string",
+      valueHint: "model",
       description: "Instructor model",
+      options: [
+        "gemini-3.5-flash-lite",
+        "gemini-3.8-flash",
+        "gemini-2.5-flash",
+      ],
       required: false,
     },
     background: {
       type: "string",
+      valueHint: "model",
       description: "Background model",
+      options: [
+        "gemini-3.5-flash-lite",
+        "gemini-3.8-flash",
+        "gemini-2.5-flash",
+      ],
       required: false,
     },
     apiKey: {
       type: "string",
+      valueHint: "key",
       description: "Custom Gemini API key",
       required: false,
     },
