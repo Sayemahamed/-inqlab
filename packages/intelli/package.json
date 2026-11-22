@@ -1,0 +1,47 @@
+{
+  "name": "@inqlab/intelli",
+  "version": "1.0.0",
+  "description": "Intelli Autonomous In-Browser Voice Agent Control Plane & CLI",
+  "homepage": "https://intelli.inqlab.dev/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sayemahamed/-inqlab.git",
+    "directory": "packages/intelli"
+  },
+  "bugs": {
+    "url": "https://github.com/Sayemahamed/-inqlab/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "intelli": "dist/index.js",
+    "inqlab-intelli": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "bun build ./index.ts --target=node --outfile=dist/index.js && chmod +x dist/index.js",
+    "prepublishOnly": "bun run build",
+    "test": "bun run ./index.ts --help"
+  },
+  "dependencies": {
+    "citty": "^0.1.6",
+    "consola": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  },
+  "author": {
+    "name": "Sayem Ahamed",
+    "url": "https://github.com/Sayemahamed"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

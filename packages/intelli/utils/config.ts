@@ -4,8 +4,8 @@ import { join } from "node:path";
 
 import type { CliConfig } from "../types";
 
-const CONFIG_DIR = join(homedir(), ".intelli");
-const CONFIG_FILE = join(CONFIG_DIR, "config.json");
+export const CONFIG_DIR = join(homedir(), ".inqlab");
+export const CONFIG_FILE = join(CONFIG_DIR, "intelli.json");
 
 const DEFAULT_CONFIG: CliConfig = {
   endpoint: "https://intelli.inqlab.dev/",
@@ -13,11 +13,11 @@ const DEFAULT_CONFIG: CliConfig = {
 
 export function loadConfig(): CliConfig {
   try {
-    if (!existsSync(CONFIG_FILE)) {
-      return { ...DEFAULT_CONFIG };
+    if (existsSync(CONFIG_FILE)) {
+      const raw = readFileSync(CONFIG_FILE, "utf-8");
+      return { ...DEFAULT_CONFIG, ...JSON.parse(raw) };
     }
-    const raw = readFileSync(CONFIG_FILE, "utf-8");
-    return { ...DEFAULT_CONFIG, ...JSON.parse(raw) };
+    return { ...DEFAULT_CONFIG };
   } catch {
     return { ...DEFAULT_CONFIG };
   }

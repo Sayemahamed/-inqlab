@@ -14,8 +14,8 @@ export const CALLBACK_PORT = 9876;
 /**
  * Global configuration directory and file locations.
  */
-export const CONFIG_DIR = path.join(os.homedir(), ".cartocode");
-export const CONFIG_FILE = path.join(CONFIG_DIR, "config.json");
+export const CONFIG_DIR = path.join(os.homedir(), ".inqlab");
+export const CONFIG_FILE = path.join(CONFIG_DIR, "code.json");
 
 /**
  * Package release version for @inqlab/code.
