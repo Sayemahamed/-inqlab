@@ -1,6 +1,10 @@
 export interface CliConfig {
   endpoint: string;
   token?: string;
+  versionCache?: {
+    lastChecked: number;
+    payload: CliVersionPayload;
+  };
 }
 
 export interface CliUser {
@@ -37,9 +41,11 @@ export interface CreateProjectCliPayload {
   anonymousTokenLimit?: number;
 }
 
-export interface CliVersionResponse {
+export interface CliVersionPayload {
   latest: string;
   deprecated: string;
   minSupported: string;
   message?: string | null;
 }
+
+export interface CliVersionResponse extends CliVersionPayload {}

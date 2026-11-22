@@ -1,8 +1,11 @@
-problem a:- The code package version in the local manifest matches the currently published registry version and will be rejected on publish => ok
-solution a:- Increment the patch version of the code package to 1.0.3 and rebuild distribution artifacts before publishing.
+problem a:- The intelli package metadata lacks discovery keywords and complete author and issue fields on npm => ok
+solution a:- Enhance packages/intelli/package.json with comprehensive keywords covering voice agents, gemini, ai agent control plane, and web interactions.
 
-problem b:- The new intelli package requires initial public release to the npm registry => ok
-solution b:- Verify the intelli bundle build, check publish configuration, and publish the package with public access.
+problem b:- The intelli package documentation and root monorepo documentation underrepresent features, environment configurations, and command schemas => ok
+solution b:- Expand packages/intelli/README.md with npm badges, full command tables, environment variable specifications, and client SDK integration patterns. Update root README.md to represent both code and intelli packages.
 
-problem c:- Workspace contains uncommitted modular citty architecture refactoring and newly added files => ok
-solution c:- Stage all modified and untracked files, record a commit for the modular refactor and version bump, and push to the remote repository.
+problem c:- The intelli CLI lacks automated version policy checking in its citty lifecycle, only offering manual invocation => ok
+solution c:- Add version cache management to configuration and integrate server policy checks with a twenty-four hour cache window into the citty setup hook.
+
+problem d:- Updated documentation, metadata, and lifecycle checks need publishing to the npm registry => ok
+solution d:- Bump intelli package to version 1.0.1, build bundles with bun, run test suite, commit changes to git repository, and publish public release to npm.

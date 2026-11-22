@@ -1,6 +1,6 @@
 {
   "name": "@inqlab/intelli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Intelli Autonomous In-Browser Voice Agent Control Plane & CLI",
   "homepage": "https://intelli.inqlab.dev/",
   "repository": {
@@ -36,6 +36,18 @@
     "@types/node": "^22.0.0",
     "typescript": "^5.6.0"
   },
+  "keywords": [
+    "intelli",
+    "inqlab",
+    "voice-agent",
+    "ai-agent",
+    "gemini",
+    "control-plane",
+    "in-browser-voice",
+    "webrtc",
+    "speech-to-speech",
+    "conversational-ai"
+  ],
   "author": {
     "name": "Sayem Ahamed",
     "url": "https://github.com/Sayemahamed"

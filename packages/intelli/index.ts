@@ -8,12 +8,16 @@ import { listCommand } from "./commands/list";
 import { loginCommand } from "./commands/login";
 import { versionCommand } from "./commands/version";
 import { CLI_VERSION } from "./constants";
+import { checkCliVersion } from "./utils/config";
 
 const main = defineCommand({
   meta: {
     name: "intelli",
     version: CLI_VERSION,
     description: "Intelli Autonomous In-Browser Voice Agent Control Plane & CLI",
+  },
+  setup() {
+    checkCliVersion().catch(() => {});
   },
   subCommands: {
     create: createCommand,
