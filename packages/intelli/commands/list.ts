@@ -1,4 +1,5 @@
 import { defineCommand } from "citty";
+import { consola } from "consola";
 
 import type { CliProject } from "../types";
 import { ApiClient } from "../utils/api";
@@ -15,20 +16,24 @@ export const listCommand = defineCommand({
         "/cli/projects",
       );
       if (!res.projects || res.projects.length === 0) {
-        console.log("No projects found. Create one with: npx @inqlab/intelli create");
+        consola.warn(
+          "No projects found. Create one with: npx @inqlab/intelli create",
+        );
         return;
       }
 
-      console.log("\nYour Intelli Projects:\n");
-      res.projects.forEach((p, idx) => {
-        console.log(`${idx + 1}. ${p.name} (ID: ${p.id})`);
+      consola.info(`Your Intelli Projects (${res.projects.length}):`);
+      for (const p of res.projects) {
         console.log(
-          `   Instructor: ${p.instructorModel || "default"} | Background: ${p.backgroundModel || "default"}`,
+          `  • ${p.name.padEnd(25)} [ID: ${p.id}]`.trimEnd(),
         );
-      });
+        console.log(
+          `    Instructor: ${p.instructorModel || "default"} | Background: ${p.backgroundModel || "default"}`,
+        );
+      }
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
-      console.error(`Failed to list projects: ${message}`);
+      consola.error(`Failed to list projects: ${message}`);
     }
   },
 });

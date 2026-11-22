@@ -6,7 +6,8 @@ import { createCommand } from "./commands/create";
 import { guideCommand } from "./commands/guide";
 import { listCommand } from "./commands/list";
 import { loginCommand } from "./commands/login";
-import { CLI_VERSION, versionCommand } from "./commands/version";
+import { versionCommand } from "./commands/version";
+import { CLI_VERSION } from "./constants";
 
 const main = defineCommand({
   meta: {

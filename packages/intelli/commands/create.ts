@@ -1,5 +1,6 @@
-import { defineCommand } from "citty";
 import { writeFileSync } from "node:fs";
+import { defineCommand } from "citty";
+import { consola } from "consola";
 
 import type {
   CliLanguage,
@@ -7,7 +8,7 @@ import type {
   CreateProjectCliPayload,
 } from "../types";
 import { ApiClient } from "../utils/api";
-import { askQuestion, selectOption } from "../utils/prompts";
+import { askQuestion, confirmAction, selectOption } from "../utils/prompts";
 
 export const createCommand = defineCommand({
   meta: {
@@ -43,14 +44,15 @@ export const createCommand = defineCommand({
   },
   async run({ args }) {
     const api = new ApiClient();
-    console.log("\n--- Create New Intelli Project ---\n");
+
+    consola.box("Create New Intelli Project");
 
     let name = args.name;
     if (!name) {
       name = await askQuestion("Project Name");
     }
     if (!name) {
-      console.error("Project name is required.");
+      consola.error("Project name is required.");
       process.exit(1);
     }
 
@@ -73,12 +75,14 @@ export const createCommand = defineCommand({
           );
           languageId = selected || null;
         }
-      } catch {}
+      } catch {
+        // Continue if languages endpoint fails
+      }
     }
 
     const modelOptions = [
       {
-        label: "gemini-3.5-flash-lite (Default)",
+        label: "gemini-3.5-flash-lite (Recommended)",
         value: "gemini-3.5-flash-lite",
       },
       { label: "gemini-3.8-flash", value: "gemini-3.8-flash" },
@@ -108,7 +112,7 @@ export const createCommand = defineCommand({
       geminiApiKey,
     };
 
-    console.log("\nCreating project on Intelli...");
+    consola.start("Creating project on Intelli...");
     try {
       const res = await api.post<{
         success: boolean;
@@ -116,22 +120,23 @@ export const createCommand = defineCommand({
         apiKey: string;
       }>("/cli/projects", payload);
 
-      console.log(`\nProject created successfully!`);
-      console.log(`  Project ID: ${res.project.id}`);
-      console.log(`  API Key:    ${res.apiKey}`);
+      consola.success("Project created successfully!");
+      consola.info(`Project Name: ${res.project.name}`);
+      consola.info(`Project ID:   ${res.project.id}`);
+      consola.info(`API Key:      ${res.apiKey}`);
 
-      const writeEnv = await askQuestion(
-        "\nWrite API key to local .env file? (y/n)",
-        "y",
+      const writeEnv = await confirmAction(
+        "Write API key to local .env file?",
+        true,
       );
-      if (writeEnv.toLowerCase() === "y") {
+      if (writeEnv) {
         const envContent = `\nINTELLI_PROJECT_ID=${res.project.id}\nINTELLI_API_KEY=${res.apiKey}\n`;
         writeFileSync(".env", envContent, { flag: "a", encoding: "utf-8" });
-        console.log("Appended credentials to .env");
+        consola.success("Appended credentials to local .env file");
       }
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
-      console.error(`\nFailed to create project: ${message}`);
+      consola.error(`Failed to create project: ${message}`);
     }
   },
 });

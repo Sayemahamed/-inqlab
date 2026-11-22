@@ -1,9 +1,10 @@
-import { defineCommand } from "citty";
 import { writeFileSync } from "node:fs";
+import { defineCommand } from "citty";
+import { consola } from "consola";
 
 import type { CliProject } from "../types";
 import { ApiClient } from "../utils/api";
-import { askQuestion, selectOption } from "../utils/prompts";
+import { askQuestion, confirmAction, selectOption } from "../utils/prompts";
 
 export const apiKeyCommand = defineCommand({
   meta: {
@@ -32,7 +33,7 @@ export const apiKeyCommand = defineCommand({
           "/cli/projects",
         );
         if (!res.projects || res.projects.length === 0) {
-          console.error(
+          consola.error(
             "No projects found. Create one first with: npx @inqlab/intelli create",
           );
           process.exit(1);
@@ -50,7 +51,7 @@ export const apiKeyCommand = defineCommand({
         );
       } catch (err: unknown) {
         const message = err instanceof Error ? err.message : String(err);
-        console.error(`Failed to fetch projects: ${message}`);
+        consola.error(`Failed to fetch projects: ${message}`);
         process.exit(1);
       }
     }
@@ -62,7 +63,7 @@ export const apiKeyCommand = defineCommand({
       );
     }
 
-    console.log("\nGenerating API key...");
+    consola.start("Generating API key...");
     try {
       const res = await api.post<{ success: boolean; key: string }>(
         "/cli/api-key",
@@ -72,21 +73,22 @@ export const apiKeyCommand = defineCommand({
         },
       );
 
-      console.log(`\nAPI Key generated successfully!`);
-      console.log(`  Key: ${res.key}`);
+      consola.success("API Key generated successfully!");
+      consola.info(`Project: ${projectId}`);
+      consola.info(`Key:     ${res.key}`);
 
-      const writeEnv = await askQuestion(
-        "\nWrite API key to local .env file? (y/n)",
-        "y",
+      const writeEnv = await confirmAction(
+        "Write API key to local .env file?",
+        true,
       );
-      if (writeEnv.toLowerCase() === "y") {
+      if (writeEnv) {
         const envContent = `\nINTELLI_PROJECT_ID=${projectId}\nINTELLI_API_KEY=${res.key}\n`;
         writeFileSync(".env", envContent, { flag: "a", encoding: "utf-8" });
-        console.log("Appended credentials to .env");
+        consola.success("Appended credentials to local .env file");
       }
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
-      console.error(`\nFailed to generate API key: ${message}`);
+      consola.error(`Failed to generate API key: ${message}`);
     }
   },
 });

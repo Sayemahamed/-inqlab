@@ -10,23 +10,15 @@
   - [x] Configure dot inqlab directory in user home as canonical configuration root
   - [x] Point packages/code configuration storage to code.json inside dot inqlab
   - [x] Point packages/intelli configuration storage to intelli.json inside dot inqlab
-- [x] Citty Refactoring for Intelli Package
-  - [x] Define main command and metadata using citty
-  - [x] Convert login command into citty subcommand with endpoint and token arguments
-  - [x] Convert project creation command into citty subcommand with flags
-  - [x] Convert list projects command into citty subcommand
-  - [x] Convert api-key generation command into citty subcommand
-  - [x] Convert version policy and developer guide commands into citty subcommands
-  - [x] Integrate interactive prompt fallbacks when required flags are omitted
-- [x] Citty Refactoring for Code Package
-  - [x] Define main cartocode command using citty
-  - [x] Implement workspace subcommands using citty
-  - [x] Implement project subcommands using citty
-  - [x] Implement branch management subcommands using citty
-  - [x] Implement test and mcp server subcommands and flags using citty
-  - [x] Preserve stdio protection and dynamic branch tracking behavior
-- [x] Verification and Quality Assurance
-  - [x] Build distribution bundles for both packages using Bun
-  - [x] Validate sound TypeScript typing across all workspace packages with zero errors
-  - [x] Test command-line help menus and subcommand dispatching for both CLIs
-  - [x] Verify configuration file paths in dot inqlab directory
+- [x] Citty Command Structure Refactoring
+  - [x] Convert packages/intelli commands into citty definitions
+  - [x] Convert packages/code commands into citty definitions
+- [x] Browser-Based Login and Consola Interaction for Intelli
+  - [x] Implement browser-based login flow with local callback server and HTML completion view
+  - [x] Support direct token or key argument bypass for headless environments
+  - [x] Adopt consola for all prompts, selections, status boxes, and error reporting
+  - [x] Align project creation, list, and key generation interaction styling with the code CLI
+- [x] Verification and Build
+  - [x] Rebuild both packages using Bun
+  - [x] Verify TypeScript types with zero errors
+  - [x] Test browser login initialization and consola interactive output

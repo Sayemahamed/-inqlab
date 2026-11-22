@@ -1,4 +1,5 @@
 import { defineCommand } from "citty";
+import { consola } from "consola";
 
 export const guideCommand = defineCommand({
   meta: {
@@ -6,43 +7,18 @@ export const guideCommand = defineCommand({
     description: "Show step-by-step project, architecture and SDK guide for agents",
   },
   run() {
-    const guideContent = `
-================================================================================
-                    INTELLI AGENT & DEVELOPER GUIDE
-================================================================================
+    consola.box(`INTELLI AGENT & DEVELOPER GUIDE
 
-1. OVERVIEW
---------------------------------------------------------------------------------
-Intelli is the full-stack control plane and real-time backend engine for
-autonomous in-browser voice agents.
+Platform: https://intelli.inqlab.dev
 
-Hosted Platform: https://intelli.inqlab.dev
+CLI Commands:
+  npx @inqlab/intelli login       Authenticate via browser
+  npx @inqlab/intelli list        List your projects
+  npx @inqlab/intelli create      Create project and generate API key
+  npx @inqlab/intelli api-key     Generate scoped API key
+  npx @inqlab/intelli version     Verify version update policy
 
-2. CLI QUICK START
---------------------------------------------------------------------------------
-  $ npx @inqlab/intelli login       # Authenticate CLI with server token
-  $ npx @inqlab/intelli create      # Create new project and generate API key
-  $ npx @inqlab/intelli list        # List all accessible projects
-  $ npx @inqlab/intelli api-key     # Generate scoped API key for project
-  $ npx @inqlab/intelli version     # Check local version against update policy
-
-3. CLIENT SDK INTEGRATION
---------------------------------------------------------------------------------
-Embed the in-browser voice copilot into host web applications:
-
-  <script type="module">
-    import { defaultRuntime } from "https://intelli.inqlab.dev/sdk/index.js";
-    const runtime = window.IntelliLayer || defaultRuntime;
-    if (runtime) {
-      window.IntelliLayer = runtime;
-      runtime.init({
-        wsUrl: "wss://intelli.inqlab.dev/ws",
-        tokenEndpoint: "https://intelli.inqlab.dev/api/projects/YOUR_PROJECT_ID/token",
-      });
-    }
-  </script>
-================================================================================
-`;
-    console.log(guideContent.trim());
+Client SDK:
+  https://intelli.inqlab.dev/sdk/index.js`);
   },
 });

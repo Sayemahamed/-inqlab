@@ -1,22 +1,17 @@
-import { createInterface } from "node:readline";
+import { consola } from "consola";
 
 export async function askQuestion(
   query: string,
   defaultValue = "",
 ): Promise<string> {
-  const rl = createInterface({
-    input: process.stdin,
-    output: process.stdout,
+  const res = await consola.prompt(query, {
+    type: "text",
+    default: defaultValue,
   });
-
-  return new Promise((resolve) => {
-    const prompt = defaultValue ? `${query} [${defaultValue}]: ` : `${query}: `;
-    rl.question(prompt, (answer) => {
-      rl.close();
-      const trimmed = answer.trim();
-      resolve(trimmed || defaultValue);
-    });
-  });
+  if (typeof res === "symbol" || res === undefined) {
+    return defaultValue;
+  }
+  return String(res).trim() || defaultValue;
 }
 
 export async function selectOption(
@@ -24,16 +19,31 @@ export async function selectOption(
   options: { label: string; value: string }[],
   defaultIndex = 0,
 ): Promise<string> {
-  console.log(`\n${query}`);
-  options.forEach((opt, idx) => {
-    const isDefault = idx === defaultIndex ? " (default)" : "";
-    console.log(`  ${idx + 1}. ${opt.label}${isDefault}`);
+  const choices = options.map((opt) => ({
+    label: opt.label,
+    value: opt.value,
+  }));
+  const res = await consola.prompt(query, {
+    type: "select",
+    options: choices,
+    initial: options[defaultIndex]?.value,
   });
-
-  const answer = await askQuestion("Select number", String(defaultIndex + 1));
-  const num = parseInt(answer, 10);
-  if (!isNaN(num) && num >= 1 && num <= options.length) {
-    return options[num - 1].value;
+  if (typeof res === "symbol" || res === undefined) {
+    return options[defaultIndex].value;
   }
-  return options[defaultIndex].value;
+  return String(res);
+}
+
+export async function confirmAction(
+  query: string,
+  defaultValue = true,
+): Promise<boolean> {
+  const res = await consola.prompt(query, {
+    type: "confirm",
+    initial: defaultValue,
+  });
+  if (typeof res === "boolean") {
+    return res;
+  }
+  return defaultValue;
 }
